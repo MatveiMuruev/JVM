@@ -18,7 +18,7 @@ public class JvmComprehension {
     }
 }
 ```
-##шаг 1: инициализация класса **JVMComprehension**:
+## шаг 1: инициализация класса **JVMComprehension**:
 ```mermaid
 graph TB
 A[public class JVMComprehension]-->B{Application ClassLoader}
@@ -28,7 +28,7 @@ D--No-->C
 C--No-->B
 B--Yes-->E[(загрузка в Metaspace: имя класса, методы класса, поля класса)]
 ```
-##шаг 2: инициализация метода **main**
+## шаг 2: инициализация метода **main**
 создание в *Stack Memory* фрейма для записи метода **main**
 ```mermaid
 graph LR
@@ -41,7 +41,7 @@ F--запись ссылки в значение переменной ii-->B
 G[Integer ii = 2]--создание переменной ii -->B
 G--создание ссылки на new Integer ii и запись значения ii-->F
 ```
-##шаг 3: инициализация метода **printAll**
+## шаг 3: инициализация метода **printAll**
 создание в *Stack Memory* фрейма для записи метода **printAll**
 ```mermaid
 graph LR
@@ -55,7 +55,7 @@ E--создание переменной uselessVar-->D
 E[Integer uselessVar = 700]--создание ссылки на new Integer ii и запись значения ii-->B
 D--запись ссылки в значение переменной uselessVar-->B
 ```
-##шаг 4: иницализация метода **System.out.println(o.toString() + i + ii)**
+## шаг 4: иницализация метода **System.out.println(o.toString() + i + ii)**
 ```mermaid
 graph LR
 A([public void println])-- создание фрейм println-->B{Stack Memory <br>фрейм println <br>примитивная i <br>ссылочная o <br>ссылочная ii}
@@ -65,26 +65,26 @@ G[Integer ii = 2]--создание переменной ii -->B
 D[(heap <br> Object o, <br>Integer ii, <br>Integer uselessVar)]--запись ссылки в значение переменной о-->B
 D--запись ссылки в значение переменной ii-->B
 ```
-##шаг 5: иницализация метода **toString()**
+## шаг 5: иницализация метода **toString()**
 ```mermaid
 graph LR
 A([public String toString])-- создание фрейм toString-->B{Stack Memory <br>фрейм toString <br>ссылочная o}
 F[Object o]--создание переменной о -->B
 D[(heap <br>Object o, <br>Integer ii, <br>Integer uselessVar)]--запись ссылки в значение переменной о-->B
 ```
-##шаг 6: исполнение метода **toString()**
+## шаг 6: исполнение метода **toString()**
 после исполнения метода фрейм **toString** удаляется из **Stack Memory**
-##шаг 7: исполнение метода **System.out.println(o.toString() + i + ii)**
+## шаг 7: исполнение метода **System.out.println(o.toString() + i + ii)**
 после исполнения метода фрейм **println** удаляется из **Stack Memory**
-##шаг 8: исполнение метода **printAll**
+## шаг 8: исполнение метода **printAll**
 после исполнения метода фрейм **printAll** удаляется из **Stack Memory**
-##шаг 9: иницализация метода **System.out.println("finished")**
+## шаг 9: иницализация метода **System.out.println("finished")**
 ```mermaid
 graph LR
 A([public void println])-- создание фрейм println-->B{Stack Memory фрейм println <br> символы строки finished преобразуются в byte <br> и выводятся на экран}
 ```
-##шаг 10: исполнение метода **System.out.println("finished")**
+## шаг 10: исполнение метода **System.out.println("finished")**
 после исполнения метода фрейм **println** удаляется из **Stack Memory**
-##шаг 11: завершение метода **main**
+## шаг 11: завершение метода **main**
 после завершения метода фрейм **main** удаляется из **Stack Memory**
 все данные из heap и Metaspace удаляются ОС
